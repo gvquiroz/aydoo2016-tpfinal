@@ -1,7 +1,7 @@
 module PropiedadesDeObjetosEspaciales
-  attr_reader :masa,:energia
-  def initialize (masa_inicial, energia_inicial)
+  attr_reader :masa,:vida
+  def initialize (vida_inicial = 100,masa_inicial = 50)
     @masa = masa_inicial
-    @energia = energia_inicial
+    @vida = vida_inicial
   end
 end
