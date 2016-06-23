@@ -28,7 +28,8 @@ module PropiedadesDeObjetosEspaciales
   end
 
   def resolver_choque_con objeto_galactico
-    reglas_espaciales = {EstrellaEspacial.class => self.destruccion_total}
+    reglas_espaciales = {EstrellaEspacial.class => self.destruccion_total,
+                          NaveEspacial.class => self.efecto_constructivo(10)}
     reglas_espaciales[objeto_galactico.class]
   end
 
