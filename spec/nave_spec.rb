@@ -25,12 +25,25 @@ class NaveSpec
     it 'vida should be 90 as efecto destructivo takes 10 life units' do
       miNave = Nave.new()
       miNave.efecto_destructivo(10)
-      expect(miNave.vida ).to eq_to(90)
+      expect(miNave.vida).to eq_to(90)
     end
     it 'vida should be 110 as efecto constructivo gives 10 life units' do
       miNave = Nave.new()
       miNave.efecto_constructivo(10)
-      expect(miNave.vida ).to eq_to(110)
+      expect(miNave.vida).to eq_to(110)
     end
+
+    it 'masa should be 60 as efecto masa gives 10 masa units' do
+      miNave = Nave.new()
+      miNave.efecto_masa(10)
+      expect(miNave.masa).to eq_to(60)
+    end
+
+    it 'masa should be 40 as efecto masa gives -10 masa units' do
+      miNave = Nave.new()
+      miNave.efecto_masa(-10)
+      expect(miNave.masa).to eq_to(40)
+    end
+
   end
 end
