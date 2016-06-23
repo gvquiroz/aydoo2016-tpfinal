@@ -8,4 +8,8 @@ module PropiedadesDeObjetosEspaciales
   def efecto_destructivo cantidad_de_unidades
     @vida -= cantidad_de_unidades
   end
+
+  def efecto_constructivo cantidad_de_unidades
+    @vida += cantidad_de_unidades
+  end
 end
