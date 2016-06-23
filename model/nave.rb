@@ -1,2 +1,4 @@
+require_relative 'propiedades_de_objetos_espaciales'
 class Nave
+include PropiedadesDeObjetosEspaciales
 end
