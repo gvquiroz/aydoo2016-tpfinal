@@ -22,5 +22,10 @@ class NaveSpec
       expect(miNave.masa).to eq(50)
     end
 
+    it 'vida should be 90 as efecto destructivo takes life units' do
+      miNave = Nave.new()
+      miNave.efecto_destructivo(10)
+      expect(miNave.vida ).to eq_to(90)
+    end
   end
 end

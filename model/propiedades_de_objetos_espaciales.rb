@@ -4,4 +4,8 @@ module PropiedadesDeObjetosEspaciales
     @masa = masa_inicial
     @vida = vida_inicial
   end
+
+  def efecto_destructivo cantidad_de_unidades
+    @vida -= cantidad_de_unidades
+  end
 end
