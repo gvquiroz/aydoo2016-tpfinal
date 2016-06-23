@@ -1,0 +1,4 @@
+require_relative '../model/propiedades_de_objetos_espaciales'
+include PropiedadesDeObjetosEspaciales
+class EstrellaEspacial
+end
