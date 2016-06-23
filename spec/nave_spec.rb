@@ -17,5 +17,10 @@ class NaveSpec
       expect(miNave.vida).to eq(100)
     end
 
+    it 'masa should be 50 as default' do
+      miNave = Nave.new()
+      expect(miNave.masa).to eq(50)
+    end
+
   end
 end
