@@ -40,7 +40,7 @@ class BombaSpec
       expect(mi_bomba.vida).to be(50)
 
     end
-    it 'estaVivo should be false as the consequence of colision with Bomba efecto destruccion total' do
+    it 'estaVivo should be false as the consequence of colision with Asteroide efecto destruccion total' do
 
       reglas_de_colision_bomba = {AsteroideEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.destruccion_total }
       }
@@ -51,7 +51,7 @@ class BombaSpec
       expect(mi_bomba.estaVivo?).to be false
 
     end
-    it 'estaVivo should be false as the consequence of colision with Bomba efecto destruccion total' do
+    it 'vida should be 50 as the consequence of colision with EstrellaEspacial efecto destructivo 100' do
 
       reglas_de_colision_bomba = {EstrellaEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_destructivo(100) }
       }
@@ -62,5 +62,6 @@ class BombaSpec
       expect(mi_bomba.vida).to be (50)
 
     end
+
   end
 end
