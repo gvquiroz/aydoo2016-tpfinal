@@ -31,8 +31,7 @@ describe 'ArbitroDeColisiones' do
 
   it 'mi_nave should destruirse al chocar con otra nave' do
 
-    reglas_de_colision_nave = {NaveEspacial => Proc.new { |x| x.destruccion_total },
-                EstrellaEspacial => 3
+    reglas_de_colision_nave = {NaveEspacial => Proc.new { |x| x.destruccion_total }
     }
 
     arbitro = ArbitroDeColisiones.new
