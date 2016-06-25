@@ -1,11 +1,6 @@
 module PropiedadesDeObjetosEspaciales
-
   attr_reader :vida,:masa,:esta_vivo
-  def initialize (vida_inicial = 100,masa_inicial = 50)
-    @vida = vida_inicial
-    @masa = masa_inicial
-    @esta_vivo = true
-  end
+  attr_accessor :reglas
 
   def efecto_destructivo cantidad_de_unidades
     @vida -= cantidad_de_unidades
@@ -28,9 +23,8 @@ module PropiedadesDeObjetosEspaciales
   end
 
   def resolver_choque_con objeto_galactico
-    reglas_espaciales = {EstrellaEspacial.class => self.destruccion_total,
-                          NaveEspacial.class => self.efecto_constructivo(10)}
-    reglas_espaciales[objeto_galactico.class]
+    @reglas[objeto_galactico.class].call(self)
+
   end
 
 end
