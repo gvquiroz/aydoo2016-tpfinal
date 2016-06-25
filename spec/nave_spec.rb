@@ -2,6 +2,8 @@ require 'rspec'
 require_relative '../model/nave_espacial'
 require_relative '../model/misil_espacial'
 require_relative '../model/bomba_espacial'
+require_relative '../model/asteroide_espacial'
+require_relative '../model/estrella_espacial'
 
 class NaveSpec
   describe 'Nave' do
@@ -52,7 +54,7 @@ class NaveSpec
 
     it 'vida should be 0 as the consequence of colision with NaveEspacial efecto destructivo 100' do
 
-      reglas_de_colision_nave = { NaveEspacial => lambda { |x| x.efecto_destructivo(100) }
+      reglas_de_colision_nave = { NaveEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.efecto_destructivo(100) }
       }
 
       mi_nave = NaveEspacial.new(100,50)
@@ -63,7 +65,7 @@ class NaveSpec
     end
     it 'vida should be 0 as the consequence of colision with MisilEspacial efecto destructivo 80' do
 
-      reglas_de_colision_nave = { MisilEspacial => lambda { |x| x.efecto_destructivo(80) }
+      reglas_de_colision_nave = { MisilEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.efecto_destructivo(80) }
       }
 
       mi_nave = NaveEspacial.new(100,50)
@@ -75,13 +77,37 @@ class NaveSpec
 
     it 'vida should be 0 as the consequence of colision with BombaEspacial efecto destructivo 50' do
 
-      reglas_de_colision_nave = { BombaEspacial => lambda { |x| x.efecto_destructivo(50) }
+      reglas_de_colision_nave = { BombaEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.efecto_destructivo(50) }
       }
 
       mi_nave = NaveEspacial.new(100,50)
       mi_nave.reglas = reglas_de_colision_nave
       mi_nave.resolver_choque_con(BombaEspacial.new(100,50))
       expect(mi_nave.vida).to be(50)
+
+    end
+
+    it 'masa should be 25 as the consequence of colision with AsteroideEspacial efecto masa' do
+
+      reglas_de_colision_nave = { AsteroideEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.efecto_masa(-otro_objeto.masa*0.5) }
+      }
+
+      mi_nave = NaveEspacial.new(100,50)
+      mi_nave.reglas = reglas_de_colision_nave
+      mi_nave.resolver_choque_con(AsteroideEspacial.new(100,50))
+      expect(mi_nave.masa).to be(25.0)
+
+    end
+
+    it 'vida should be 250 as the consequence of colision with EstrellaEspacial efecto constructivo' do
+
+      reglas_de_colision_nave = { EstrellaEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.efecto_constructivo(otro_objeto.vida) }
+      }
+
+      mi_nave = NaveEspacial.new(100,50)
+      mi_nave.reglas = reglas_de_colision_nave
+      mi_nave.resolver_choque_con(EstrellaEspacial.new(150,50))
+      expect(mi_nave.vida).to be(250)
 
     end
 

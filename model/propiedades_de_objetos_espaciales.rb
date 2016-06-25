@@ -23,7 +23,7 @@ module PropiedadesDeObjetosEspaciales
   end
 
   def resolver_choque_con objeto_galactico
-    @reglas[objeto_galactico.class].call(self)
+    @reglas[objeto_galactico.class].call(self,objeto_galactico)
 
   end
 

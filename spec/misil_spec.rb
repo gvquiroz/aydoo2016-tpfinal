@@ -11,7 +11,7 @@ class MisilSpec
 
     it 'vida should be 50 as efecto destructivo takes 100 on colision with NaveEspacial' do
 
-      reglas_de_colision_misil = { NaveEspacial => lambda { |x| x.efecto_destructivo(100) }
+      reglas_de_colision_misil = { NaveEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.efecto_destructivo(100) }
       }
 
       mi_misil = MisilEspacial.new(150,50)
@@ -24,7 +24,7 @@ class MisilSpec
 
     it 'vida should be 50 as efecto destructivo takes 100 on colision with Misil' do
 
-      reglas_de_colision_misil = { MisilEspacial => lambda { |x| x.efecto_destructivo(100) }
+      reglas_de_colision_misil = { MisilEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.efecto_destructivo(100) }
       }
 
       mi_misil = MisilEspacial.new(200,50)
@@ -36,7 +36,7 @@ class MisilSpec
     end
     it 'should be the same as the consequence of colision with Bomba is null' do
 
-      reglas_de_colision_misil = { BombaEspacial => lambda { |x|  }
+      reglas_de_colision_misil = { BombaEspacial => lambda { |mi_objeto,otro_objeto|  }
       }
 
       mi_misil = MisilEspacial.new(200,50)
