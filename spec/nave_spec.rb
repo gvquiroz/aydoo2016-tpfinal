@@ -1,6 +1,5 @@
 require 'rspec'
 require_relative '../model/nave_espacial'
-require_relative '../model/reglas_de_objetos_espaciales'
 class NaveSpec
   describe 'Nave' do
     it 'should be not null' do

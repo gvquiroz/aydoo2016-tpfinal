@@ -6,29 +6,6 @@ require_relative '../model/reglas_de_objetos_espaciales'
 
 describe 'ArbitroDeColisiones' do
 
-=begin
-  it 'should destruirse' do
-    reglas = ReglasDeObjetosEspaciales.new
-    mi_nave = NaveEspacial.new(100,50)
-    mi_estrella = EstrellaEspacial.new(100,50)
-    arbitro = ArbitroDeColisiones.new
-
-    arbitro.resolver_colision(mi_nave,mi_estrella)
-
-    expect(mi_nave.estaVivo?).to be false
-  end
-  it 'estrella should increase vida 10 unit points' do
-    reglas = ReglasDeObjetosEspaciales.new
-    mi_nave = NaveEspacial.new(100,50)
-    mi_estrella = EstrellaEspacial.new(100,50)
-    arbitro = ArbitroDeColisiones.new
-
-    arbitro.resolver_colision(mi_nave,mi_estrella)
-
-    expect(mi_estrella.estaVivo?).to be false
-  end
-=end
-
   it 'mi_nave should destruirse al chocar con otra nave' do
 
     reglas_de_colision_nave = {NaveEspacial => lambda { |x| x.destruccion_total }
@@ -47,7 +24,7 @@ describe 'ArbitroDeColisiones' do
 
   it 'mi_otra_nave also should destruirse al chocar con otra nave' do
 
-    reglas_de_colision_nave = {NaveEspacial => lambda { |x| x.destruccion_total }
+    reglas_de_colision_nave = { NaveEspacial => lambda { |x| x.destruccion_total }
     }
     arbitro = ArbitroDeColisiones.new
 
