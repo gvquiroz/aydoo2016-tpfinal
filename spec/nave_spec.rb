@@ -1,6 +1,8 @@
 require 'rspec'
 require_relative '../model/nave_espacial'
 require_relative '../model/misil_espacial'
+require_relative '../model/bomba_espacial'
+
 class NaveSpec
   describe 'Nave' do
     it 'should be not null' do
@@ -68,6 +70,18 @@ class NaveSpec
       mi_nave.reglas = reglas_de_colision_nave
       mi_nave.resolver_choque_con(MisilEspacial.new(100,50))
       expect(mi_nave.vida).to be(20)
+
+    end
+
+    it 'vida should be 0 as the consequence of colision with BombaEspacial efecto destructivo 50' do
+
+      reglas_de_colision_nave = { BombaEspacial => lambda { |x| x.efecto_destructivo(50) }
+      }
+
+      mi_nave = NaveEspacial.new(100,50)
+      mi_nave.reglas = reglas_de_colision_nave
+      mi_nave.resolver_choque_con(BombaEspacial.new(100,50))
+      expect(mi_nave.vida).to be(50)
 
     end
 
