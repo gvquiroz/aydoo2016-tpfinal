@@ -1,6 +1,7 @@
 require 'rspec'
 require_relative '../model/misil_espacial'
 require_relative '../model/nave_espacial'
+require_relative '../model/bomba_espacial'
 class MisilSpec
   describe 'Misil' do
     it 'should be not null' do
@@ -31,6 +32,18 @@ class MisilSpec
       mi_misil.resolver_choque_con(MisilEspacial.new(100,100))
 
       expect(mi_misil.vida).to be(100)
+
+    end
+    it 'should be the same as the consequence of colision with Bomba is null' do
+
+      reglas_de_colision_misil = { BombaEspacial => lambda { |x|  }
+      }
+
+      mi_misil = MisilEspacial.new(200,50)
+      mi_misil.reglas = reglas_de_colision_misil
+      mi_misil.resolver_choque_con(BombaEspacial.new(100,100))
+
+      expect(mi_misil.vida).to be(200)
 
     end
   end
