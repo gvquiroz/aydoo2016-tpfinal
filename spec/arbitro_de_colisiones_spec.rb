@@ -2,6 +2,7 @@ require 'rspec'
 require_relative '../model/nave_espacial'
 require_relative '../model/estrella_espacial'
 require_relative '../model/arbitro_de_colisiones'
+require_relative '../model/misil_espacial'
 require_relative '../model/reglas_de_objetos_espaciales'
 
 describe 'ArbitroDeColisiones' do
