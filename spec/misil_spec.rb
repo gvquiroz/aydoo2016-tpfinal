@@ -8,7 +8,7 @@ class MisilSpec
       expect(mi_nave).to be_truthy
     end
 
-    it 'vida should be 50 as efecto destructivo takes 100 on colision' do
+    it 'vida should be 50 as efecto destructivo takes 100 on colision with NaveEspacial' do
 
       reglas_de_colision_misil = { NaveEspacial => lambda { |x| x.efecto_destructivo(100) }
       }
@@ -18,6 +18,19 @@ class MisilSpec
       mi_misil.resolver_choque_con(NaveEspacial.new(100,100))
 
       expect(mi_misil.vida).to be(50)
+
+    end
+
+    it 'vida should be 50 as efecto destructivo takes 100 on colision with Misil' do
+
+      reglas_de_colision_misil = { MisilEspacial => lambda { |x| x.efecto_destructivo(100) }
+      }
+
+      mi_misil = MisilEspacial.new(200,50)
+      mi_misil.reglas = reglas_de_colision_misil
+      mi_misil.resolver_choque_con(MisilEspacial.new(100,100))
+
+      expect(mi_misil.vida).to be(100)
 
     end
   end
