@@ -51,5 +51,16 @@ class BombaSpec
       expect(mi_bomba.estaVivo?).to be false
 
     end
+    it 'estaVivo should be false as the consequence of colision with Bomba efecto destruccion total' do
+
+      reglas_de_colision_bomba = {EstrellaEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_destructivo(100) }
+      }
+
+      mi_bomba = BombaEspacial.new(150, 50)
+      mi_bomba.reglas = reglas_de_colision_bomba
+      mi_bomba.resolver_choque_con(EstrellaEspacial.new(100, 50))
+      expect(mi_bomba.vida).to be (50)
+
+    end
   end
 end
