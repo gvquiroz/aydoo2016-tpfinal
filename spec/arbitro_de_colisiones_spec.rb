@@ -10,33 +10,26 @@ describe 'ArbitroDeColisiones' do
 
   it 'mi_nave should destruirse al chocar con otra nave' do
 
-    reglas_de_colision_nave = {NaveEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.destruccion_total }
-    }
-
+    reglas = ReglasDeObjetosEspaciales.new
     arbitro = ArbitroDeColisiones.new
-    mi_nave = NaveEspacial.new(100,50)
-    mi_otra_nave = NaveEspacial.new(100,50)
-    mi_otra_nave.reglas =reglas_de_colision_nave
+    mi_nave = NaveEspacial.new(150,50,reglas.reglas_de_colision)
+    mi_otra_nave = NaveEspacial.new(100,50,reglas.reglas_de_colision)
 
-    mi_nave.reglas = reglas_de_colision_nave
     arbitro.resolver_colision(mi_nave,mi_otra_nave)
-    expect(mi_nave.estaVivo?).to be false
+    expect(mi_nave.vida).to eq(50)
 
   end
 
   it 'mi_otra_nave also should destruirse al chocar con otra nave' do
 
-    reglas_de_colision_nave = { NaveEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.destruccion_total }
-    }
+    reglas = ReglasDeObjetosEspaciales.new
     arbitro = ArbitroDeColisiones.new
 
-    mi_nave = NaveEspacial.new(100,50)
-    mi_otra_nave = NaveEspacial.new(100,50)
-    mi_otra_nave.reglas =reglas_de_colision_nave
+    mi_nave = NaveEspacial.new(100,50,reglas.reglas_de_colision)
+    mi_otra_nave = NaveEspacial.new(100,50,reglas.reglas_de_colision)
 
-    mi_nave.reglas = reglas_de_colision_nave
     arbitro.resolver_colision(mi_nave,mi_otra_nave)
-    expect(mi_otra_nave.estaVivo?).to be false
+    expect(mi_otra_nave.esta_vivo).to be false
 
   end
 

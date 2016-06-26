@@ -1,8 +1,11 @@
 class ArbitroDeColisiones
 
-  def resolver_colision (un_objeto, otro_objeto)
-    un_objeto.resolver_choque_con(otro_objeto)
-    otro_objeto.resolver_choque_con(un_objeto)
+  def resolver_colision (primer_objeto, segundo_objeto)
+    copiaDelPrimerObjeto = primer_objeto.dup
+    copiaDelSegundoObjeto = segundo_objeto.dup
+
+    primer_objeto.resolver_choque_con(copiaDelSegundoObjeto)
+    segundo_objeto.resolver_choque_con(copiaDelPrimerObjeto)
   end
 
 end
