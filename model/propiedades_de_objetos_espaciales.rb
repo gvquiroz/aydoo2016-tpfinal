@@ -1,12 +1,11 @@
 module PropiedadesDeObjetosEspaciales
-  attr_reader :vida,:masa,:esta_vivo,:reglas
+  attr_reader :vida, :masa, :esta_vivo, :reglas
 
   def resolver_choque_con objeto_galactico
-    @reglas[objeto_galactico.class].call(self,objeto_galactico)
-    if self.vida <= 0
-      @vida = 0
-      @esta_vivo = false
-    end
+
+    @reglas[objeto_galactico.class].call(self, objeto_galactico) if (@reglas[objeto_galactico.class] && esta_vivo)
+    define_estado_muerto
+
   end
 
   def efecto_destructivo cantidad_de_unidades
@@ -24,6 +23,19 @@ module PropiedadesDeObjetosEspaciales
   def destruccion_total
     @vida = 0
     @esta_vivo = false
+  end
+
+  private
+  # Es horrible pero fue dejado asi hasta encontrar una solucion mas elegante
+  def define_estado_muerto ()
+    if @vida <= 0
+      @vida = 0
+      @esta_vivo = false
+    end
+    if @masa <= 0
+      @masa = 0
+      @esta_vivo = false
+    end
   end
 
 end

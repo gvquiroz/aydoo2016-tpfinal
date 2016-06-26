@@ -8,7 +8,7 @@ require_relative '../model/reglas_de_objetos_espaciales'
 
 describe 'ArbitroDeColisiones' do
 
-  it 'mi_nave should destruirse al chocar con otra nave' do
+  it 'mi_nave deberia quedar con 50 de vida al chocar con otra nave con regla efecto destructivo 100' do
 
     reglas = ReglasDeObjetosEspaciales.new
     arbitro = ArbitroDeColisiones.new
@@ -20,7 +20,7 @@ describe 'ArbitroDeColisiones' do
 
   end
 
-  it 'mi_otra_nave also should destruirse al chocar con otra nave' do
+  it 'mi_otra_nave deberia destruirse al chocar con otra nave con efecto destructivo 100' do
 
     reglas = ReglasDeObjetosEspaciales.new
     arbitro = ArbitroDeColisiones.new

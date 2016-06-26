@@ -6,12 +6,13 @@ require_relative '../model/misil_espacial'
 require_relative '../model/asteroide_espacial'
 
 class ReglasDeObjetosEspaciales
-  attr_reader :reglas_de_colision
+  attr_accessor :reglas_de_colision
+
   def initialize
     reglas_de_colision_nave = {
-        NaveEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_destructivo(100)},
-        MisilEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_destructivo(80)},
-        BombaEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_destructivo(50)},
+        NaveEspacial => lambda { |mi_objeto, _| mi_objeto.efecto_destructivo(100) },
+        MisilEspacial => lambda { |mi_objeto, _| mi_objeto.efecto_destructivo(80) },
+        BombaEspacial => lambda { |mi_objeto, _| mi_objeto.efecto_destructivo(50) },
         AsteroideEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_masa(-otro_objeto.masa*0.5) },
         EstrellaEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_constructivo(otro_objeto.vida) }
     }
@@ -21,34 +22,30 @@ class ReglasDeObjetosEspaciales
     }
 
     reglas_de_colision_estrella = {
-        NaveEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.destruccion_total } ,
-        MisilEspacial => lambda { |mi_objeto, otro_objeto|  },
-        BombaEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.destruccion_total},
-        AsteroideEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.destruccion_total },
-        EstrellaEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.destruccion_total }
+        NaveEspacial => lambda { |mi_objeto, _| mi_objeto.destruccion_total },
+        BombaEspacial => lambda { |mi_objeto, _| mi_objeto.destruccion_total },
+        AsteroideEspacial => lambda { |mi_objeto, _| mi_objeto.destruccion_total },
+        EstrellaEspacial => lambda { |mi_objeto, _| mi_objeto.destruccion_total }
     }
 
     reglas_de_colision_misil = {
-        NaveEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.efecto_destructivo(100) },
-        MisilEspacial => lambda { |mi_objeto,otro_objeto| mi_objeto.efecto_destructivo(100) },
-        BombaEspacial => lambda { |mi_objeto,otro_objeto|  },
-        EstrellaEspacial => lambda { |mi_objeto,otro_objeto|  }
+        NaveEspacial => lambda { |mi_objeto, _| mi_objeto.efecto_destructivo(100) },
+        MisilEspacial => lambda { |mi_objeto, _| mi_objeto.efecto_destructivo(100) },
     }
 
     reglas_de_colision_bomba = {
-        NaveEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_destructivo(100) },
-        MisilEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_destructivo(mi_objeto.vida/2) },
-        BombaEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_destructivo(100) },
-        AsteroideEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.destruccion_total },
-        EstrellaEspacial => lambda { |mi_objeto, otro_objeto| mi_objeto.efecto_destructivo(100) }
+        NaveEspacial => lambda { |mi_objeto, _| mi_objeto.efecto_destructivo(100) },
+        MisilEspacial => lambda { |mi_objeto, _| mi_objeto.efecto_destructivo(mi_objeto.vida/2) },
+        BombaEspacial => lambda { |mi_objeto, _| mi_objeto.efecto_destructivo(100) },
+        AsteroideEspacial => lambda { |mi_objeto, _| mi_objeto.destruccion_total },
+        EstrellaEspacial => lambda { |mi_objeto, _| mi_objeto.efecto_destructivo(100) }
     }
 
-
-    @reglas_de_colision = { NaveEspacial => reglas_de_colision_nave,
-                            AsteroideEspacial => reglas_de_colision_asteroide,
-                            EstrellaEspacial => reglas_de_colision_estrella,
-                            MisilEspacial => reglas_de_colision_misil,
-                            BombaEspacial => reglas_de_colision_bomba
+    @reglas_de_colision = {NaveEspacial => reglas_de_colision_nave,
+                           AsteroideEspacial => reglas_de_colision_asteroide,
+                           EstrellaEspacial => reglas_de_colision_estrella,
+                           MisilEspacial => reglas_de_colision_misil,
+                           BombaEspacial => reglas_de_colision_bomba
     }
   end
 
