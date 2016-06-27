@@ -33,4 +33,29 @@ describe 'ArbitroDeColisiones' do
 
   end
 
+  it 'mi_otra_nave deberia destruirse al chocarse con un asteroide que disminuye su masa' do
+
+    reglas = ReglasDeObjetosEspaciales.new
+    arbitro = ArbitroDeColisiones.new
+
+    mi_nave = NaveEspacial.new(100,50,reglas.reglas_de_colision)
+    un_asteroide = AsteroideEspacial.new(100,150,reglas.reglas_de_colision)
+
+    arbitro.resolver_colision(mi_nave,un_asteroide)
+    expect(mi_nave.esta_vivo).to be false
+
+  end
+  it 'mi_otra_nave deberia tener masa 0 al chocarse con un asteroide que disminuye su masa' do
+
+    reglas = ReglasDeObjetosEspaciales.new
+    arbitro = ArbitroDeColisiones.new
+
+    mi_nave = NaveEspacial.new(100,50,reglas.reglas_de_colision)
+    un_asteroide = AsteroideEspacial.new(100,150,reglas.reglas_de_colision)
+
+    arbitro.resolver_colision(mi_nave,un_asteroide)
+    expect(mi_nave.masa).to eq(0)
+
+  end
+
 end

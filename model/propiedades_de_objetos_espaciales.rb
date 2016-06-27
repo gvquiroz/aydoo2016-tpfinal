@@ -1,6 +1,5 @@
 module PropiedadesDeObjetosEspaciales
   attr_reader :vida, :masa, :esta_vivo, :reglas
-
   def resolver_choque_con objeto_galactico
 
     @reglas[objeto_galactico.class].call(self, objeto_galactico) if (@reglas[objeto_galactico.class] && esta_vivo)
