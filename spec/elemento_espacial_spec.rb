@@ -1,6 +1,6 @@
 require 'rspec'
 require 'spec_helper'
-require_relative '../model/nave_espacial'
+require_relative '../model/ObjetosEspaciales/nave_espacial'
 
 
 class ElementoEspacialSpec

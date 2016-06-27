@@ -1,9 +1,12 @@
-require_relative '../model/nave_espacial'
-require_relative '../model/bomba_espacial'
-require_relative '../model/estrella_espacial'
+require_relative '../model/ObjetosEspaciales/asteroide_espacial'
+require_relative '../model/ObjetosEspaciales/bomba_espacial'
+require_relative '../model/ObjetosEspaciales/estrella_espacial'
+require_relative '../model/ObjetosEspaciales/misil_espacial'
+require_relative '../model/ObjetosEspaciales/nave_espacial'
+
+
 require_relative '../model/arbitro_de_colisiones'
-require_relative '../model/misil_espacial'
-require_relative '../model/asteroide_espacial'
+
 
 class ReglasDeObjetosEspaciales
   attr_accessor :reglas_de_colision

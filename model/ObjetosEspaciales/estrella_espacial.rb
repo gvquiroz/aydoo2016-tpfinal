@@ -1,4 +1,4 @@
-require_relative '../model/propiedades_de_objetos_espaciales'
+require_relative '../../model/propiedades_de_objetos_espaciales'
 include PropiedadesDeObjetosEspaciales
 class EstrellaEspacial
   def initialize (vida_inicial,masa_inicial,reglas)
