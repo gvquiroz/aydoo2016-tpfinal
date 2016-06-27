@@ -5,7 +5,7 @@ module PropiedadesDeObjetosEspaciales
 
   def resolver_choque_con objeto_galactico
 
-    aplicar_regla_correspondiente(objeto_galactico) if (@reglas[objeto_galactico.class] && esta_vivo)
+    aplicar_regla_correspondiente_con(objeto_galactico) if (@reglas[objeto_galactico.class] && esta_vivo)
     define_estado_muerto
 
   end
@@ -14,7 +14,7 @@ module PropiedadesDeObjetosEspaciales
 
   private
 
-  def aplicar_regla_correspondiente(objeto_galactico)
+  def aplicar_regla_correspondiente_con(objeto_galactico)
     @reglas[objeto_galactico.class].call(self, objeto_galactico)
   end
 
