@@ -62,6 +62,20 @@ describe 'Elemento Espacial como Nave' do
     expect(mi_nave.esta_vivo).to be false
   end
 
+  it 'deberia dar una exception al no poder instancearse con vida negativa el objeto espacial' do
+    reglas_de_colision_nave = { NaveEspacial => nil }
+    reglas = { NaveEspacial => reglas_de_colision_nave}
+
+    expect {(NaveEspacial.new(-100, 50,reglas))}.to raise_error('La vida ingresada debe ser positiva')
+  end
+
+  it 'deberia dar una exception al no poder instancearse con masa negativa el objeto espacial' do
+    reglas_de_colision_nave = { NaveEspacial => nil }
+    reglas = { NaveEspacial => reglas_de_colision_nave}
+
+    expect {(NaveEspacial.new(-00, -50,reglas))}.to raise_error('La vida ingresada debe ser positiva')
+  end
+
 end
 
 end
